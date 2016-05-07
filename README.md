@@ -2,23 +2,25 @@
 ------
 The purpose of SweetOnions is to emulate a smaller-scale version of onion routing using Python 2.7. There will be a client, server, directory, and three onion routing nodes through which the client can send and recieve encrypted messages. Each message uses asymmetric encryption - the message itself is encrypted with 192-bit AES and the AES key is subsequently encrypted with 2048-RSA to ensure the sender is anonymized. 
 
+This has been developed by Shivam Khanna, Leon He, Timothy Ong, and Austin Chu (May 2016).
+
 ## Installation
 ------
 Requires pycrypto (https://www.dlitz.net/software/pycrypto/) and Python 2.7
 
 ## Usage
 ------
-This tool requires a minimum of five machines (2 onion routing nodes) and six machines (3 onion routing nodes) to operate in order to simulate a TOR/onion routing network. The machines should be running as follows:
+This tool requires a minimum of five machines (2 onion routing nodes) or six machines (3 onion routing nodes) to operate in order to simulate a TOR/onion routing network. The machines should be running as follows:
 
-_Machine 1_: python client.py (This will request the user to enter the directory node's IP address as well as the message the user would like to send)
+_Machine 1_: python directory.py
 
-_Machine 2_: python directory.py
+_Machine 2_: python node.py -genKey
 
 _Machine 3_: python node.py -genKey
 
-_Machine 4_: python node.py -genKey
+_Machine 4_: python node.py -genKey (Each node will request the directory node's IP address) [Optional Machine]
 
-_Machine 5_: python node.py -genKey (Each node will request the directory node's IP address) [Optional Machine]
+_Machine 5_: python client.py (This will request the user to enter the directory node's IP address as well as the message the user would like to send)
 
 _Machine 6_: python server.py
 
@@ -62,7 +64,7 @@ This represents each onion routing node (and has cases for both entrance and exi
 
 _Message Sent to Node_: AES[AES[message + DesinationIP] + RSA[Node3_AESKey] + Node3_IP] + RSA[Node2_AESKey]
 
-Node 2 uses its private RSA key to obtain the AES Key, and then uses that AES Key to encrypt the remaining contents. The result is:
+Node 2 uses its private RSA key to obtain the AES Key, and then uses that AES Key to decrypt the remaining contents and obtain the next node's IP. The result is:
 
 _Message Node 2 Sends to Node 3_: AES[message + DesinationIP] + RSA[Node3_AESKey]
 
