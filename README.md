@@ -10,7 +10,7 @@ Requires pycrypto (https://www.dlitz.net/software/pycrypto/) and Python 2.7
 
 ## Usage
 ------
-This tool requires a minimum of five machines (2 onion routing nodes) or six machines (3 onion routing nodes) to operate in order to simulate a TOR/onion routing network. The machines should be running as follows:
+This tool requires a minimum of five machines (2 onion routing nodes) or six machines (3 onion routing nodes) on the same network in order to simulate a TOR/onion routing network. The machines should be running as follows:
 
 _Machine 1_: python directory.py
 
