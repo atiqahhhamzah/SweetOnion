@@ -20,9 +20,9 @@ _Machine 3_: python node.py -genKey
 
 _Machine 4_: python node.py -genKey (Each node will request the directory node's IP address) [Optional Machine]
 
-_Machine 5_: python client.py (This will request the user to enter the directory node's IP address as well as the message the user would like to send)
+_Machine 5_: python server.py
 
-_Machine 6_: python server.py
+_Machine 6_: python client.py (This will request the user to enter the directory node's IP address as well as the message the user would like to send)
 
 ## Demo
 ------
